@@ -1,0 +1,26 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": "",
+    "aws_default_region": "",
+    "source_ami": "ami-bb18efad"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "ami_name": "machine-learning-{{isotime `20060102150405`}}",
+      "ami_description": "provides machine-learning ami",
+      "instance_type": "p2.xlarge",
+      "region": "{{user `aws_default_region`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "source_ami": "{{user `source_ami`}}",
+      "ssh_username": "ec2-user"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "script.sh"
+    }
+  ]
+}
