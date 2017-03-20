@@ -3,18 +3,25 @@
     "aws_access_key": "",
     "aws_secret_key": "",
     "aws_default_region": "",
-    "source_ami": "ami-bb18efad"
+    "source_ami": "ami-bb18efad",
+    "instance_type": "p2.xlarge",
+    "vpc_id": "",
+    "subnet_id": "",
+    "security_group_id": ""
   },
   "builders": [
     {
       "type": "amazon-ebs",
       "ami_name": "machine-learning-{{isotime `20060102150405`}}",
       "ami_description": "provides machine-learning ami",
-      "instance_type": "p2.xlarge",
+      "instance_type": "{{user `instance_type`}}",
       "region": "{{user `aws_default_region`}}",
       "secret_key": "{{user `aws_secret_key`}}",
       "source_ami": "{{user `source_ami`}}",
-      "ssh_username": "ec2-user"
+      "ssh_username": "ec2-user",
+      "vpc_id": "{{user `vpc_id`}}",
+      "subnet_id": "{{user `subnet_id`}}",
+      "security_group_id": "{{user `security_group_id`}}"
     }
   ],
   "provisioners": [

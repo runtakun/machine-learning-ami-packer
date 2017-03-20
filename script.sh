@@ -1,7 +1,7 @@
 #!/bin/sh
 
 sudo yum -y update && sudo yum -y upgrade
-sudo yum install -y git
+sudo yum install -y git gcc
 
 cd /tmp
 git clone https://github.com/yyuu/pyenv.git ~/.pyenv
@@ -17,7 +17,17 @@ pyenv global anaconda3-4.3.0
 echo 'alias activate="source $PYENV_ROOT/versions/anaconda3-4.3.0/bin/activate"' >> ~/.bashrc
 source ~/.bashrc
 
-conda install pandas
-conda install ipython
-conda install jupyter
-conda install pillow
+pip install numpy
+pip install scipy
+pip install pandas
+pip install matplotlib
+pip install ipython
+pip install jupyter
+pip install pillow
+pip install chainer
+pip install tensorflow
+pip install keras
+pip install scikit-learn
+
+jupyter notebook --generate-config
+echo -e "c.NotebookApp.ip ='*'\nc.NotebookApp.port = 8888\nc.NotebookApp.open_browser = False" >> ~/.jupyter/jupyter_notebook_config.py
